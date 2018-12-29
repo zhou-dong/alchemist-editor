@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
+import { Stack } from "alchemist-core";
 
 import brace from 'brace';
 import AceEditor from 'react-ace';
 
-import 'brace/mode/javascript';
-import 'brace/theme/ghub';
 
+import 'brace/mode/javascript';
+import 'brace/theme/github';
+
+let code = "";
 function onChange(newValue: any) {
-  console.log('change', newValue);
-  // eval(newValue);
+  code = newValue;
 }
 
 const editor = () => {
@@ -24,11 +26,20 @@ const editor = () => {
   );
 };
 
+const execute = () => {
+  console.log(code);
+  console.log("======result=======");
+  eval(code);
+}
+
 const App = () => {
   return (
     <div className="App" >
       <header className="App-header" >
         {editor()}
+        <button onClick={execute}>
+          RUN
+        </button>
       </header>
     </div>
   );

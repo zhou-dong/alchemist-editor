@@ -8,6 +8,7 @@
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
+    "alchemist-core": "^1.0.4",
     "react": "^16.7.0",
     "react-ace": "^6.3.2",
     "react-dom": "^16.7.0",
