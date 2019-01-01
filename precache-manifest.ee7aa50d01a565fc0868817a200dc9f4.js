@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/alchemist-editor/static/css/main.910a0e15.chunk.css"
   },
   {
-    "revision": "67d92d4db65fb14e84b1bff689db2b8b",
+    "revision": "0eca25b24d1f51a3e01b8f8a5f7b9f55",
     "url": "/alchemist-editor/index.html"
   }
 ];
