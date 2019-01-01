@@ -24,25 +24,27 @@ const editor = () => {
   );
 };
 
-const execute = () => {
-  import("alchemist-core").then(alchemist => {
-    const Stack = alchemist.Stack;
-    try {
-      eval(code);
-    } catch (error) {
-      console.error(error.message);
-    }
-  })
-}
-
 const App = () => {
+
+  const execute = () => {
+    import("alchemist-core").then(alchemist => {
+      const Stack = alchemist.Stack;
+      const Queue = alchemist.Queue;
+      try {
+        eval(code);
+      } catch (error) {
+        console.error(error.message);
+      }
+    })
+  }
+
   return (
     <div className="App" >
       <header className="App-header" >
-        {editor()}
         <button onClick={execute}>
           RUN
         </button>
+        {editor()}
       </header>
     </div>
   );
