@@ -25,10 +25,13 @@ const editor = () => {
 };
 
 const execute = () => {
-  console.log(code);
   import("alchemist-core").then(alchemist => {
     const Stack = alchemist.Stack;
-    eval(code);
+    try {
+      eval(code);
+    } catch (error) {
+      console.error(error.message);
+    }
   })
 }
 
