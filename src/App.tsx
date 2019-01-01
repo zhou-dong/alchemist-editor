@@ -1,13 +1,11 @@
 import React from 'react';
-import './App.css';
-import { Stack } from "alchemist-core";
 
-import brace from 'brace';
 import AceEditor from 'react-ace';
-
-
+// import brace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/github';
+
+import './App.css';
 
 let code = "";
 function onChange(newValue: any) {
@@ -28,8 +26,10 @@ const editor = () => {
 
 const execute = () => {
   console.log(code);
-  console.log("======result=======");
-  eval(code);
+  import("alchemist-core").then(alchemist => {
+    const Stack = alchemist.Stack;
+    eval(code);
+  })
 }
 
 const App = () => {
