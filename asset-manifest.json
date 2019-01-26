@@ -1,7 +1,7 @@
 {
   "main.css": "/alchemist-editor/static/css/main.b8779ce4.chunk.css",
-  "main.js": "/alchemist-editor/static/js/main.9490a32a.chunk.js",
-  "main.js.map": "/alchemist-editor/static/js/main.9490a32a.chunk.js.map",
+  "main.js": "/alchemist-editor/static/js/main.07dfa3f1.chunk.js",
+  "main.js.map": "/alchemist-editor/static/js/main.07dfa3f1.chunk.js.map",
   "static/js/1.6816ae3b.chunk.js": "/alchemist-editor/static/js/1.6816ae3b.chunk.js",
   "static/js/1.6816ae3b.chunk.js.map": "/alchemist-editor/static/js/1.6816ae3b.chunk.js.map",
   "static/js/2.d80ec6c4.chunk.js": "/alchemist-editor/static/js/2.d80ec6c4.chunk.js",
@@ -10,6 +10,6 @@
   "runtime~main.js.map": "/alchemist-editor/static/js/runtime~main.81e658ca.js.map",
   "static/css/main.b8779ce4.chunk.css.map": "/alchemist-editor/static/css/main.b8779ce4.chunk.css.map",
   "index.html": "/alchemist-editor/index.html",
-  "precache-manifest.4fecc4a07d3c3c4291eefde2392f83e6.js": "/alchemist-editor/precache-manifest.4fecc4a07d3c3c4291eefde2392f83e6.js",
+  "precache-manifest.143ad523c10dc80b7a4cc5c1b378bb3a.js": "/alchemist-editor/precache-manifest.143ad523c10dc80b7a4cc5c1b378bb3a.js",
   "service-worker.js": "/alchemist-editor/service-worker.js"
 }
