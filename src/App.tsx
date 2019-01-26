@@ -143,6 +143,33 @@ class RealStack {
   }
 }
 
+const demo = `
+const h = document.getElementById("display");
+const stack = new RealStack(h);
+
+stack.push(0);
+stack.push(1);
+stack.push(2);
+
+stack.push(3);
+stack.push(4);
+stack.push(5);
+stack.push(6);
+stack.push(7);
+stack.push(8);
+stack.push(9);
+
+stack.pop();
+stack.pop();
+stack.pop();
+stack.pop();
+stack.pop();
+stack.pop();
+stack.pop();
+stack.pop();
+stack.run();
+`
+
 let code = "";
 function onChange(newValue: any) {
   code = newValue;
@@ -155,6 +182,7 @@ const editor = () => {
       theme="github"
       onChange={onChange}
       name="UNIQUE_ID_OF_DIV"
+      value={demo}
       editorProps={{ $blockScrolling: true }}
     />
   );
