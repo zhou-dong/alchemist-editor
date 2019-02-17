@@ -28,7 +28,8 @@ stack.pop();
 stack.pop();
 stack.pop();
 stack.pop();
-stack.run();
+
+stack.play(1000);
 `
 
 let code = demo;
