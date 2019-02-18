@@ -5,7 +5,7 @@ import "brace/theme/solarized_dark";
 
 const mode = "javascript";
 const theme = "solarized_dark";
-const fontSize = 16;
+const fontSize = 20;
 const fontFamily = "'Courier New', Menlo, Monaco, monospace";
 
 export interface Props {
