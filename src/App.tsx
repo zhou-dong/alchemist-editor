@@ -19,7 +19,7 @@ input.split("").forEach(char => {
     switch (char) {
         case "(":
             log.push("(");
-            stack1.peek();
+            stack1.size();
             break;
         case ")":
             stack1.peek();
