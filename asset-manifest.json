@@ -1,15 +1,15 @@
 {
-  "main.css": "/alchemist-editor/static/css/main.b8779ce4.chunk.css",
-  "main.js": "/alchemist-editor/static/js/main.07dfa3f1.chunk.js",
-  "main.js.map": "/alchemist-editor/static/js/main.07dfa3f1.chunk.js.map",
-  "static/js/1.6816ae3b.chunk.js": "/alchemist-editor/static/js/1.6816ae3b.chunk.js",
-  "static/js/1.6816ae3b.chunk.js.map": "/alchemist-editor/static/js/1.6816ae3b.chunk.js.map",
-  "static/js/2.d80ec6c4.chunk.js": "/alchemist-editor/static/js/2.d80ec6c4.chunk.js",
-  "static/js/2.d80ec6c4.chunk.js.map": "/alchemist-editor/static/js/2.d80ec6c4.chunk.js.map",
-  "runtime~main.js": "/alchemist-editor/static/js/runtime~main.81e658ca.js",
-  "runtime~main.js.map": "/alchemist-editor/static/js/runtime~main.81e658ca.js.map",
-  "static/css/main.b8779ce4.chunk.css.map": "/alchemist-editor/static/css/main.b8779ce4.chunk.css.map",
+  "main.css": "/alchemist-editor/static/css/main.72b84525.chunk.css",
+  "main.js": "/alchemist-editor/static/js/main.4cbc565a.chunk.js",
+  "main.js.map": "/alchemist-editor/static/js/main.4cbc565a.chunk.js.map",
+  "runtime~main.js": "/alchemist-editor/static/js/runtime~main.0c147cf8.js",
+  "runtime~main.js.map": "/alchemist-editor/static/js/runtime~main.0c147cf8.js.map",
+  "static/js/2.3e84e3e8.chunk.js": "/alchemist-editor/static/js/2.3e84e3e8.chunk.js",
+  "static/js/2.3e84e3e8.chunk.js.map": "/alchemist-editor/static/js/2.3e84e3e8.chunk.js.map",
+  "static/js/3.895c35dd.chunk.js": "/alchemist-editor/static/js/3.895c35dd.chunk.js",
+  "static/js/3.895c35dd.chunk.js.map": "/alchemist-editor/static/js/3.895c35dd.chunk.js.map",
   "index.html": "/alchemist-editor/index.html",
-  "precache-manifest.143ad523c10dc80b7a4cc5c1b378bb3a.js": "/alchemist-editor/precache-manifest.143ad523c10dc80b7a4cc5c1b378bb3a.js",
-  "service-worker.js": "/alchemist-editor/service-worker.js"
+  "precache-manifest.bbacfbe94effe04e7641805585e26249.js": "/alchemist-editor/precache-manifest.bbacfbe94effe04e7641805585e26249.js",
+  "service-worker.js": "/alchemist-editor/service-worker.js",
+  "static/css/main.72b84525.chunk.css.map": "/alchemist-editor/static/css/main.72b84525.chunk.css.map"
 }
