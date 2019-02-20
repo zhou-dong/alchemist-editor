@@ -96,6 +96,9 @@ function onChange(newValue: any) {
 }
 
 const execute = () => {
+
+  (document.getElementById("display") as HTMLElement).innerHTML = ""
+
   import("alchemist-core").then(alchemist => {
     const Stack = alchemist.Stack;
     const Queue = alchemist.Queue;
