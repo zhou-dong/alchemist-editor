@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/alchemist-editor/static/js/runtime~main.0c147cf8.js"
   },
   {
-    "revision": "fac33a08c6a68efab763",
-    "url": "/alchemist-editor/static/js/main.fac33a08.chunk.js"
+    "revision": "9042a3f7978c6d419fe2",
+    "url": "/alchemist-editor/static/js/main.9042a3f7.chunk.js"
   },
   {
     "revision": "895c35ddc662377ba1bb",
@@ -16,11 +16,11 @@ self.__precacheManifest = [
     "url": "/alchemist-editor/static/js/2.3e84e3e8.chunk.js"
   },
   {
-    "revision": "fac33a08c6a68efab763",
+    "revision": "9042a3f7978c6d419fe2",
     "url": "/alchemist-editor/static/css/main.72b84525.chunk.css"
   },
   {
-    "revision": "df3813e48c2e918cd125c80b1df43ed6",
+    "revision": "a9eb02e2d3294da6ef8ffb03d2ee47ca",
     "url": "/alchemist-editor/index.html"
   }
 ];
