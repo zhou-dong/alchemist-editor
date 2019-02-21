@@ -2,10 +2,13 @@ import React from "react";
 import Resizable from "re-resizable";
 import Button from "@material-ui/core/Button";
 import PlayArrow from "@material-ui/icons/PlayArrow";
+import Code from "@material-ui/icons/Code";
+import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
 
 import "./App.css";
-
 import Editor from "./Editor";
+
 const demo = `const parentHTML = document.getElementById("display"); 
 const input = "(1+(4+5+2)-3)+(6+8)";
 
@@ -82,7 +85,7 @@ while (!stack2.isEmpty()) {
   }
 }
 
-const speed = 2000;
+const speed = 1000;
 
 log.play(speed);
 index.play(speed);
@@ -112,7 +115,7 @@ const execute = () => {
   })
 }
 
-const height = 720;
+const height = "100vh";
 const backgroundColor = "#002B36";
 
 const editor = (
@@ -124,7 +127,7 @@ const editor = (
       justifyContent: "center",
       borderRight: "solid 1px #ddd",
       float: "left",
-      maxWidth: "90%"
+      maxWidth: "90%",
     }}
   >
     <Editor onChange={onChange} defaultValue={demo} />
@@ -132,28 +135,45 @@ const editor = (
 );
 
 const display = (
-  <div id="display" style={{
-    backgroundColor,
-    height,
-    minWidth: "5%",
-    color: "white",
-  }}>
+  <div id="display"
+    style={{
+      backgroundColor,
+      height,
+      minWidth: "5%",
+      color: "white",
+      overflow: "hidden"
+    }}>
   </div>
 );
 
 const main = (
-  <div style={{ width: "100%", height: "100%" }}>
+  <div style={{ width: "100%" }}>
     {editor}
     {display}
+  </div>
+);
+
+const header = (
+  <div style={{
+    backgroundColor,
+    borderBottom: "1px solid black"
+  }}>
+    <Grid container>
+      <Grid item xs={11}>
+      </Grid>
+      <Grid item xs={1}>
+        <Button onClick={execute} variant="outlined" color="secondary" >
+          <PlayArrow />Play
+        </Button>
+      </Grid>
+    </Grid>
   </div>
 );
 
 const App = () => {
   return (
     <React.Fragment>
-      <Button onClick={execute} variant="outlined">
-        <PlayArrow>RUN</PlayArrow>Play
-      </Button>
+      {header}
       {main}
     </React.Fragment>
   );
