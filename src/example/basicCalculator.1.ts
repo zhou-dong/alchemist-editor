@@ -1,4 +1,4 @@
-import { Index } from "alchemist-core";
+import { Index } from "../../../alchemist-core/dist";
 
 const input = "(1+(4+5+2)-3)+(6+8)";
 

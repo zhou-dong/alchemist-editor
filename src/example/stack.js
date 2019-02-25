@@ -1,4 +1,4 @@
-import { Index } from "alchemist-core";
+import { Index } from "../../../alchemist-core/dist";
 
 const index = new Index(document.getElementById("display"));
 
