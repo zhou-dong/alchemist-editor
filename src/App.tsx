@@ -2,19 +2,31 @@ import React from "react";
 import "./App.css";
 import Pages from "./pages";
 
-let demo = `
+let demo = `// Basic stack operators
+
 const parentHTML = document.getElementById("display");
-const stack = new Stack(parentHTML, null, "stack3");
+const stack = new Stack(parentHTML, null, "stack1");
 
 stack.push(0);
 stack.push(1);
+stack.pop();
+
 stack.push(2);
+stack.pop();
+
+stack.push(3);
+stack.pop();
+
+stack.push(4);
+stack.push(4);
+stack.push(4);
 
 stack.pop();
 stack.pop();
 stack.pop();
+stack.pop();
 
-stack.play(500)
+stack.play(500);
 `;
 
 function onChange(newValue: any) {
