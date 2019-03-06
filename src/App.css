@@ -36,32 +36,14 @@ body {
   }
 }
 
-#stack1 > tbody > tr > td {
-  border-color: #61dafb;
-  border-width: 2px;
-  border-style: solid;
-  font-size: 30px;
-  color: yellow;
-  padding: 10px;
-}
-
-#stack1, #stack2, #stack3 {
+#display table {
   margin-right: 20px;
   margin-top: 10px;
   border-collapse: collapse;
   float: left;
 }
 
-#stack2 > tbody > tr > td {
-  border-color: #20ee0d;
-  border-width: 2px;
-  border-style: solid;
-  font-size: 30px;
-  color: yellow;
-  padding: 10px;
-}
-
-#stack3 > tbody > tr > td {
+#display tbody > tr > td {
   border-color: #20ee0d;
   border-width: 2px;
   border-style: solid;

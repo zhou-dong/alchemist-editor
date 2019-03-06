@@ -7,9 +7,7 @@ const style = {
 
 const Footer = () => (
     <footer style={style}>
-        ALCHEMIST EDITOR
-        <br />
-        FOOTER
+        ALGORITHMS AND DATA STRUCTERS VISUALIZATION ONLINE EDITOR
     </footer>
 );
 

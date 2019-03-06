@@ -4,8 +4,7 @@ import Pages from "./pages";
 
 let demo = `// Basic stack operators
 
-const parentHTML = document.getElementById("display");
-const stack = new Stack(parentHTML, null, "stack1");
+const stack = new Stack();
 
 stack.push(0);
 stack.push(1);
@@ -35,12 +34,19 @@ function onChange(newValue: any) {
 
 const execute = () => {
 
-  (document.getElementById("display") as HTMLElement).innerHTML = ""
+  const parentHTML = document.getElementById("display") as HTMLElement
+
+  parentHTML.innerHTML = ""
 
   import("alchemist-core").then(alchemist => {
-    const Stack = alchemist.Stack;
     const Queue = alchemist.Queue;
     const Index = alchemist.Index;
+
+    class Stack<T> extends alchemist.Stack<T> {
+      constructor() {
+        super(parentHTML);
+      }
+    }
 
     try {
       eval(demo);
