@@ -1,9 +1,10 @@
 ### Algorithms and Data Structures
 ---
 
-<blockquote>
-  This blockquote will change based on the HTML settings above.
-</blockquote>
+#### Index<T>
+
+- createStack<T>(size?: number, id?: string)
+- createQueue<T>(size?: number, id?: string)
 
 #### Queue<T>
 
