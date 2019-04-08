@@ -47,7 +47,10 @@ body {
   border-color: #20ee0d;
   border-width: 2px;
   border-style: solid;
-  font-size: 30px;
+  font-size: 25px;
   color: yellow;
   padding: 10px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
 }

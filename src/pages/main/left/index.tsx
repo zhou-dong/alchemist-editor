@@ -16,7 +16,8 @@ const style = {
 export default () => (
     <Resizable enable={{ right: true }}>
         <nav style={style}>
-            nav bar
+            Queue
+            Stack
         </nav>
     </Resizable>
 );

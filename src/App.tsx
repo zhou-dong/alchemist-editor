@@ -2,30 +2,20 @@ import React from "react";
 import "./App.css";
 import Pages from "./pages";
 
-let demo = `// Basic stack operators
+let demo = `// Queue Example
 
-const stack = new Stack();
+const capacity = 5;
+const queue = new Queue(capacity);
 
-stack.push(0);
-stack.push(1);
-stack.pop();
+for(let i = 0; i < capacity; i++){
+  queue.offer(i + 1);
+}
 
-stack.push(2);
-stack.pop();
+for(let i = 0; i < capacity; i++) {
+  queue.poll();
+}
 
-stack.push(3);
-stack.pop();
-
-stack.push(4);
-stack.push(4);
-stack.push(4);
-
-stack.pop();
-stack.pop();
-stack.pop();
-stack.pop();
-
-stack.play(500);
+queue.start(1000);
 `;
 
 function onChange(newValue: any) {
@@ -35,16 +25,24 @@ function onChange(newValue: any) {
 const execute = () => {
 
   const parentHTML = document.getElementById("display") as HTMLElement
-
   parentHTML.innerHTML = ""
 
   import("alchemist-core").then(alchemist => {
-    const Queue = alchemist.Queue;
-    const Index = alchemist.Index;
+    class Index extends alchemist.Index {
+      constructor() {
+        super(parentHTML)
+      }
+    }
 
     class Stack<T> extends alchemist.Stack<T> {
-      constructor() {
-        super(parentHTML);
+      constructor(size?: number, id?: string) {
+        super(parentHTML, size, id);
+      }
+    }
+
+    class Queue<T> extends alchemist.Queue<T> {
+      constructor(size?: number, id?: string) {
+        super(parentHTML, size, id);
       }
     }
 

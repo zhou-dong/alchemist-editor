@@ -4,8 +4,8 @@ const input = "(1+(4+5+2)-3)+(6+8)";
 
 const index = new Index(document.getElementById("display") as HTMLElement);
 
-const stack1 = index.createStack("stack1");
-const stack2 = index.createStack("stack2");
+const stack1 = index.createStack(10, "stack1");
+const stack2 = index.createStack(10, "stack2");
 
 input.split("").forEach(char => {
     switch (char) {
@@ -42,5 +42,5 @@ while (!stack2.isEmpty()) {
     }
 }
 
-index.play(500);
+index.start(500);
 console.log(stack1.peek());
