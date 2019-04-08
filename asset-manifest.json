@@ -1,15 +1,15 @@
 {
-  "main.css": "/alchemist-editor/static/css/main.c93fad9b.chunk.css",
-  "main.js": "/alchemist-editor/static/js/main.baec2a43.chunk.js",
-  "main.js.map": "/alchemist-editor/static/js/main.baec2a43.chunk.js.map",
-  "runtime~main.js": "/alchemist-editor/static/js/runtime~main.59a4e725.js",
-  "runtime~main.js.map": "/alchemist-editor/static/js/runtime~main.59a4e725.js.map",
-  "static/js/2.1fa7f260.chunk.js": "/alchemist-editor/static/js/2.1fa7f260.chunk.js",
-  "static/js/2.1fa7f260.chunk.js.map": "/alchemist-editor/static/js/2.1fa7f260.chunk.js.map",
-  "static/js/3.5f85fdea.chunk.js": "/alchemist-editor/static/js/3.5f85fdea.chunk.js",
-  "static/js/3.5f85fdea.chunk.js.map": "/alchemist-editor/static/js/3.5f85fdea.chunk.js.map",
+  "main.css": "/alchemist-editor/static/css/main.412ad607.chunk.css",
+  "main.js": "/alchemist-editor/static/js/main.9f3be020.chunk.js",
+  "main.js.map": "/alchemist-editor/static/js/main.9f3be020.chunk.js.map",
+  "runtime~main.js": "/alchemist-editor/static/js/runtime~main.d4f60d2c.js",
+  "runtime~main.js.map": "/alchemist-editor/static/js/runtime~main.d4f60d2c.js.map",
+  "static/js/2.7b289444.chunk.js": "/alchemist-editor/static/js/2.7b289444.chunk.js",
+  "static/js/2.7b289444.chunk.js.map": "/alchemist-editor/static/js/2.7b289444.chunk.js.map",
+  "static/js/3.52d8b84e.chunk.js": "/alchemist-editor/static/js/3.52d8b84e.chunk.js",
+  "static/js/3.52d8b84e.chunk.js.map": "/alchemist-editor/static/js/3.52d8b84e.chunk.js.map",
   "index.html": "/alchemist-editor/index.html",
-  "precache-manifest.61a36f5d84b95d6776385c96bdaca713.js": "/alchemist-editor/precache-manifest.61a36f5d84b95d6776385c96bdaca713.js",
+  "precache-manifest.2aa8d5317e45080a7280a05dec473b14.js": "/alchemist-editor/precache-manifest.2aa8d5317e45080a7280a05dec473b14.js",
   "service-worker.js": "/alchemist-editor/service-worker.js",
-  "static/css/main.c93fad9b.chunk.css.map": "/alchemist-editor/static/css/main.c93fad9b.chunk.css.map"
+  "static/css/main.412ad607.chunk.css.map": "/alchemist-editor/static/css/main.412ad607.chunk.css.map"
 }
