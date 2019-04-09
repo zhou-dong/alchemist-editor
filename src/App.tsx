@@ -7,9 +7,10 @@ import { MarkdownEditor, JavascriptEditor } from "./components/Editor";
 // npm i -D @types/webpack-env
 const webpackMarkdownLoader = require.context(`!raw-loader!./example/queue/`, false, /\.md$/, );
 
-const defaultContent = webpackMarkdownLoader("./readme.md").default;
+const defaultContent = webpackMarkdownLoader("./README.md").default;
 
-let demo = `// Queue Example
+let demo = `//
+// Queue Example
 
 const capacity = 5;
 const queue = new Queue(capacity);
@@ -22,8 +23,17 @@ for(let i = 0; i < capacity; i++) {
   queue.poll();
 }
 
-queue.start(1000);
-`;
+for(let i = 0; i < capacity; i++){
+  queue.offer(i + 1);
+}
+
+
+for(let i = 0; i < capacity; i++) {
+  queue.poll();
+}
+
+queue.start(500);
+`
 
 const execute = () => {
 
@@ -79,17 +89,19 @@ class App extends React.Component<{}, State> {
 
   public readonly state = { content: defaultContent };
 
-  private onChange = (newValue: string) => this.setState({ content: newValue });
-
+  private onChange = (newValue: string) => {
+    demo = newValue;
+    // this.setState({ content: newValue });
+  }
   public render() {
     return (
       <React.Fragment>
         <Pages
           execute={execute}
           midNode={<ReactMarkdown source={this.state.content} />}
-          rightNode={<MarkdownEditor
+          rightNode={<JavascriptEditor
             name="code.md"
-            defaultValue={defaultContent}
+            defaultValue={demo}
             onChange={this.onChange}
             value={this.state.content}
           />}
