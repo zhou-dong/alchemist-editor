@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Main from "./main";
+import { Mode } from "../components/Editor";
 
 const style = {
     display: "flex",
@@ -11,8 +12,9 @@ const style = {
 
 interface Props {
     execute: () => any;
-    midNode: ReactNode;
     rightNode: ReactNode;
+    mode: Mode;
+    content?: string;
 }
 
 const App = (props: Props) => (

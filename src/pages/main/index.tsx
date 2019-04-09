@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import Left from "./left";
 import Right from "./right";
 import Mid from "./mid";
+import { Mode } from '../../components/Editor';
 
 const style = {
     display: 'flex',
@@ -11,15 +12,16 @@ const style = {
 
 interface Props {
     execute: () => any;
-    midNode: ReactNode;
     rightNode: ReactNode;
+    mode: Mode;
+    content?: string;
 }
 
 export default (props: Props) => {
     return (
         <div style={style}>
             <Left />
-            <Mid reactNode={props.midNode} />
+            <Mid {...props} />
             <Right reactNode={props.rightNode} execute={props.execute} />
         </div>
     )

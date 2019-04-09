@@ -1,18 +1,8 @@
-import fs from "fs";
-// Queue Example
+// npm i -D @types/webpack-env
+const webpackMarkdownLoader = require.context(`!raw-loader!./`, false, /\.md$/, );
+const webpackTextLoader = require.context(`!raw-loader!./`, false, /\.txt$/, );
 
-const code = `// Queue Example
-const capacity = 5;
-const queue = new Queue(capacity);
+const readme = webpackMarkdownLoader("./README.md").default;
+const example = webpackTextLoader("./code.txt").default
 
-for(let i = 0; i < capacity; i++){
-  queue.offer(i + 1);
-}
-
-for(let i = 0; i < capacity; i++) {
-  queue.poll();
-}
-
-queue.start(1000);
-`
-
+export { readme, example };

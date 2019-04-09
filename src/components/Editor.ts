@@ -23,6 +23,10 @@ const defaultAceEditorProps: AceEditorProps = {
     editorProps: defaultEditorProps
 };
 
+export enum Mode {
+    Javascript, Markdown
+}
+
 export class MarkdownEditor extends AceEditor {
     static defaultProps = { ...defaultAceEditorProps, mode: "markdown" }
 }
