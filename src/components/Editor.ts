@@ -22,6 +22,7 @@ const defaultAceEditorProps: AceEditorProps = {
     editorProps: defaultEditorProps
 };
 
+
 export default class extends AceEditor {
     static defaultProps = defaultAceEditorProps
 
@@ -29,17 +30,3 @@ export default class extends AceEditor {
         super(props)
     }
 }
-
-// const defaultName = "code.js";
-// const getExtension = (filename: string): string | undefined => filename.split(".").pop();
-
-// export default (props: AceEditorProps) => {
-//     if (!props.name) {
-//         props.name = defaultName;
-//     }
-//     switch (getExtension(props.name)) {
-//         case "js": return createEditor(Mode.Javascript, props);
-//         case "md": return createEditor(Mode.Markdown, props);
-//         default: throw new Error("file name must have extension with .js or .md")
-//     }
-// };
