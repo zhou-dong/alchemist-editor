@@ -1,10 +1,4 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-
-// npm i -D @types/webpack-env
-const webpackMarkdownLoader = require.context(`!raw-loader!../../../example/queue/`, false, /\.md$/, );
-
-const tt = webpackMarkdownLoader("./readme.md");
+import React, { ReactNode } from "react";
 
 const layoutStyle = {
     flex: 1,
@@ -17,8 +11,10 @@ const style = {
     color: "palegoldenrod"
 };
 
-export default () => (
+type Props = { reactNode: ReactNode };
+
+export default ({ reactNode }: Props) => (
     <section style={style} id="display">
-        <ReactMarkdown source={tt.default} />
+        {reactNode}
     </section>
 );

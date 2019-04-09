@@ -1,14 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Resizable from "re-resizable";
 import Chip from "@material-ui/core/Chip";
 import Code from "@material-ui/icons/Code";
 import Add from "@material-ui/icons/Add";
 import PlayArrow from "@material-ui/icons/PlayArrow";
 
-import Editor, { Props as EditorProps } from "../../../components/Editor";
-
-interface Props extends EditorProps {
+interface Props {
     execute: () => any;
+    reactNode: ReactNode;
 }
 
 const styles = {
@@ -59,7 +58,7 @@ export default (props: Props) => (
                     onClick={props.execute}
                 />
             </nav>
-            <Editor {...props} />
+            {props.reactNode}
         </aside>
     </Resizable>
 );

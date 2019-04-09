@@ -1,4 +1,3 @@
-import Stack from "alchemist-core";
 import fs from "fs";
 
 const title = "stack example"

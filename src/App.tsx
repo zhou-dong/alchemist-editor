@@ -1,6 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "./App.css";
 import Pages from "./pages";
+import ReactMarkdown from "react-markdown";
+import Editor from "./components/Editor";
+
+// npm i -D @types/webpack-env
+const webpackMarkdownLoader = require.context(`!raw-loader!./example/queue/`, false, /\.md$/, );
+
+const defaultContent = webpackMarkdownLoader("./readme.md").default;
 
 let demo = `// Queue Example
 
@@ -17,10 +24,6 @@ for(let i = 0; i < capacity; i++) {
 
 queue.start(1000);
 `;
-
-function onChange(newValue: any) {
-  demo = newValue;
-}
 
 const execute = () => {
 
@@ -54,12 +57,33 @@ const execute = () => {
   })
 }
 
-const App = () => {
-  return (
-    <React.Fragment>
-      <Pages onChange={onChange} fontSize={14} defaultValue={demo} execute={execute} />
-    </React.Fragment>
-  );
+interface State {
+  content: string;
+}
+
+class App extends React.Component<{}, State> {
+
+  public readonly state = { content: defaultContent };
+
+  private onChange = (newValue: string) => this.setState({ content: newValue });
+
+  public render() {
+    return (
+      <React.Fragment>
+        <Pages
+          execute={execute}
+          midNode={<ReactMarkdown source={this.state.content} />}
+          rightNode={<Editor
+            name="code.md"
+            defaultValue={defaultContent}
+            onChange={this.onChange}
+            value={this.state.content}
+            mode="markdown"
+          />}
+        />
+      </React.Fragment>
+    );
+  }
 };
 
 export default App;

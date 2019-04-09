@@ -1,5 +1,4 @@
-import Stack from "alchemist-core";
-
+import fs from "fs";
 // Queue Example
 
 const code = `// Queue Example

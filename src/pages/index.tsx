@@ -1,17 +1,18 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Main from "./main";
-import { Props as EditorProps } from "../components/Editor";
 
 const style = {
     display: "flex",
     minHeight: "100vh",
-    flexDirection: "column"
+    flexDirection: "column",
 } as React.CSSProperties;
 
-interface Props extends EditorProps {
+interface Props {
     execute: () => any;
+    midNode: ReactNode;
+    rightNode: ReactNode;
 }
 
 const App = (props: Props) => (
