@@ -18,10 +18,15 @@ const defaultAceEditorProps: AceEditorProps = {
     height: "100%",
     fontSize: 14,
     theme: "solarized_dark",
+    showGutter: true,
     setOptions: defaultAceOptions,
     editorProps: defaultEditorProps
 };
 
-export default class extends AceEditor {
-    static defaultProps = defaultAceEditorProps
+export class MarkdownEditor extends AceEditor {
+    static defaultProps = { ...defaultAceEditorProps, mode: "markdown" }
+}
+
+export class JavascriptEditor extends AceEditor {
+    static defaultProps = { ...defaultAceEditorProps, mode: "javascript" }
 }
