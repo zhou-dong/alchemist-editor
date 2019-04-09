@@ -22,11 +22,6 @@ const defaultAceEditorProps: AceEditorProps = {
     editorProps: defaultEditorProps
 };
 
-
 export default class extends AceEditor {
     static defaultProps = defaultAceEditorProps
-
-    constructor(props: AceEditorProps) {
-        super(props)
-    }
 }
