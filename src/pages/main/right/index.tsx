@@ -3,11 +3,19 @@ import Resizable from "re-resizable";
 import Chip from "@material-ui/core/Chip";
 import Code from "@material-ui/icons/Code";
 import Add from "@material-ui/icons/Add";
+import Cached from "@material-ui/icons/Cached";
 import PlayArrow from "@material-ui/icons/PlayArrow";
+import { AceEditorProps } from "react-ace";
+import Editor from "../../../components/Editor";
+import { SvgIconProps } from "@material-ui/core/SvgIcon";
+import { getMode } from "../../../utils/fileUtils";
 
-interface Props {
-    execute: () => any;
-    reactNode: ReactNode;
+interface Props extends AceEditorProps {
+    play?: () => any;
+    handleSwitch: () => any;
+    name: string;
+    value: string;
+    defaultValue: string;
 }
 
 const styles = {
@@ -32,33 +40,24 @@ const styles = {
     },
 };
 
+const createChip = (SvgIcon: React.ComponentType<SvgIconProps>, label?: string, handleClick?: () => any) => (
+    <Chip avatar={<SvgIcon style={styles.icon} />}
+        style={styles.chip as React.CSSProperties}
+        label={label}
+        onClick={handleClick}
+    />
+);
+
 export default (props: Props) => (
     <Resizable enable={{ left: true }}>
         <aside style={styles.layout}>
             <nav style={styles.nav}>
-                <Chip
-                    avatar={<Code style={styles.icon} />}
-                    label="code.js"
-                    style={styles.chip as React.CSSProperties}
-                />
-                <Chip
-                    avatar={<Code style={styles.icon} />}
-                    label="README.md"
-                    style={styles.chip as React.CSSProperties}
-                />
-                <Chip
-                    avatar={<Add style={styles.icon} />}
-                    label=""
-                    style={styles.chip as React.CSSProperties}
-                />
-                <Chip
-                    avatar={<PlayArrow style={styles.icon} />}
-                    label=""
-                    style={styles.chip as React.CSSProperties}
-                    onClick={props.execute}
-                />
+                {createChip(Code)}
+                {createChip(Add, props.name)}
+                {getMode(props.name) === "javascript" && createChip(PlayArrow, "", props.play)}
+                {createChip(Cached, "", props.handleSwitch)}
             </nav>
-            {props.reactNode}
+            <Editor {...props} mode={getMode(props.name)} />
         </aside>
     </Resizable>
 );

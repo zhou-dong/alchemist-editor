@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import "./App.css";
 import Pages from "./pages";
-import { MarkdownEditor, JavascriptEditor, Mode } from "./components/Editor";
-
 import { readme, example } from "./example/queue/index";
 
 let demo = example
@@ -40,44 +38,47 @@ const execute = () => {
 }
 
 interface State {
+  name: string
   content: string;
+  onChange?: (value: string, event?: any) => void;
+  isJs: boolean;
 }
-
-// const defaultName = "code.js";
-// const getExtension = (filename: string): string | undefined => filename.split(".").pop();
-
-// export default (props: AceEditorProps) => {
-//     if (!props.name) {
-//         props.name = defaultName;
-//     }
-//     switch (getExtension(props.name)) {
-//         case "js": return createEditor(Mode.Javascript, props);
-//         case "md": return createEditor(Mode.Markdown, props);
-//         default: throw new Error("file name must have extension with .js or .md")
-//     }
-// };
 
 class App extends React.Component<{}, State> {
 
-  public readonly state = { content: readme };
-
-  private onChange = (newValue: string) => {
+  private javascriptOnChange = (newValue: string) => {
     demo = newValue;
-    // this.setState({ content: newValue });
   }
+
+  public readonly state = {
+    name: "queue.js",
+    content: demo,
+    onChange: this.javascriptOnChange,
+    isJs: true
+  };
+
+  private markdownOnChange = (newValue: string) => {
+    this.setState({ content: newValue });
+  }
+
+  private handleSwitch = () => {
+    if (this.state.isJs) {
+      this.setState({ content: readme, onChange: this.markdownOnChange, isJs: false, name: "README.md" });
+    } else {
+      this.setState({ content: demo, onChange: this.javascriptOnChange, isJs: true, name: "queue.js" });
+    }
+  }
+
   public render() {
     return (
       <React.Fragment>
         <Pages
-          execute={execute}
-          mode={Mode.Markdown}
-          content={this.state.content}
-          rightNode={<JavascriptEditor
-            name="code.md"
-            defaultValue={demo}
-            onChange={this.onChange}
-            value={this.state.content}
-          />}
+          handleSwitch={this.handleSwitch}
+          play={execute}
+          defaultValue={this.state.content}
+          value={this.state.content}
+          onChange={this.state.onChange}
+          name={this.state.name}
         />
       </React.Fragment>
     );

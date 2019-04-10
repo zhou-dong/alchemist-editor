@@ -1,6 +1,7 @@
 import AceEditor, { AceEditorProps, AceOptions, EditorProps } from "react-ace";
 import "brace/mode/javascript";
 import "brace/mode/markdown";
+import "brace/mode/plain_text";
 import "brace/theme/solarized_dark";
 
 const defaultAceOptions: AceOptions = {
@@ -23,14 +24,6 @@ const defaultAceEditorProps: AceEditorProps = {
     editorProps: defaultEditorProps
 };
 
-export enum Mode {
-    Javascript, Markdown
-}
-
-export class MarkdownEditor extends AceEditor {
-    static defaultProps = { ...defaultAceEditorProps, mode: "markdown" }
-}
-
-export class JavascriptEditor extends AceEditor {
-    static defaultProps = { ...defaultAceEditorProps, mode: "javascript" }
+export default class extends AceEditor {
+    static defaultProps = defaultAceEditorProps
 }

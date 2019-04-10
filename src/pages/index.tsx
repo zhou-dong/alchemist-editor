@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Main from "./main";
-import { Mode } from "../components/Editor";
+import { AceEditorProps } from "../../node_modules/react-ace";
 
 const style = {
     display: "flex",
@@ -10,11 +10,12 @@ const style = {
     flexDirection: "column",
 } as React.CSSProperties;
 
-interface Props {
-    execute: () => any;
-    rightNode: ReactNode;
-    mode: Mode;
-    content?: string;
+interface Props extends AceEditorProps {
+    play?: () => any;
+    handleSwitch: () => any;
+    name: string;
+    value: string;
+    defaultValue: string;
 }
 
 const App = (props: Props) => (

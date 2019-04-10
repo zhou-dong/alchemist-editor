@@ -1,20 +1,20 @@
-import React, { ReactNode } from 'react';
-
+import React from "react";
+import { AceEditorProps } from "react-ace";
 import Left from "./left";
 import Right from "./right";
 import Mid from "./mid";
-import { Mode } from '../../components/Editor';
 
 const style = {
     display: 'flex',
     flex: 1,
 };
 
-interface Props {
-    execute: () => any;
-    rightNode: ReactNode;
-    mode: Mode;
-    content?: string;
+interface Props extends AceEditorProps {
+    play?: () => any;
+    handleSwitch: () => any;
+    name: string;
+    value: string;
+    defaultValue: string;
 }
 
 export default (props: Props) => {
@@ -22,7 +22,7 @@ export default (props: Props) => {
         <div style={style}>
             <Left />
             <Mid {...props} />
-            <Right reactNode={props.rightNode} execute={props.execute} />
+            <Right {...props} />
         </div>
     )
 };

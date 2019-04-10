@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
-import { Mode } from "../../../components/Editor";
-
+import { AceEditorProps } from "react-ace";
+import { getMode } from "../../../utils/fileUtils";
 const layoutStyle = {
     flex: 1,
     overflow: "hidden"
@@ -13,18 +13,23 @@ const style = {
     color: "palegoldenrod"
 };
 
+const plain_text = (source?: string) => <section style={style}> {source} </section>;
+
 const javascript = () => <section style={style} id="display"></section>;
 
 const markdown = (source?: string) => (
-    <section style={style} id="display"><ReactMarkdown source={source} /></section>
+    <section style={style}><ReactMarkdown source={source} /></section>
 );
 
-type Props = { mode: Mode, content?: string };
+interface Props extends AceEditorProps {
+    name: string;
+}
 
-export default (props: Props) => {
-    switch (props.mode) {
-        case Mode.Javascript: return javascript();
-        case Mode.Markdown: return markdown(props.content);
+export default ({ name, value }: Props) => {
+    switch (getMode(name)) {
+        case "javascript": return javascript();
+        case "markdown": return markdown(value);
+        case "plain_text": return plain_text(value);
         default: throw new Error("doesn't support")
     }
 };
