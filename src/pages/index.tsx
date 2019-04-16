@@ -1,27 +1,20 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Main from "./main";
-import { AceEditorProps } from "../../node_modules/react-ace";
 
 const style = {
     display: "flex",
     minHeight: "100vh",
+    maxHeight: "100vh",
     flexDirection: "column",
+    overflow: "hidden",
 } as React.CSSProperties;
 
-interface Props extends AceEditorProps {
-    play?: () => any;
-    handleSwitch: () => any;
-    name: string;
-    value: string;
-    defaultValue: string;
-}
-
-const App = (props: Props) => (
+const App = () => (
     <div style={style}>
         <Header />
-        <Main {...props} />
+        <Main />
         <Footer />
     </div>
 );

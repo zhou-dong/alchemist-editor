@@ -20,10 +20,10 @@ interface Props extends AceEditorProps {
 
 const styles = {
     layout: {
-        flex: 1,
+        flex: 2,
         height: "100%",
-        overflow: "hidden",
-        backgroundColor: "#002B36"
+        // overflow: "scroll",
+        // backgroundColor: "#002B36"
     },
     icon: {
         width: 20,
@@ -35,8 +35,9 @@ const styles = {
         fontFamily: "'Courier New', Menlo, Monaco, monospace",
     },
     nav: {
-        borderBottom: "1px solid #586e75",
-        minWidth: "500px",
+        // borderBottom: "1px solid #586e75",
+        // minWidth: "500px",
+        overflow: "hidden"
     },
 };
 

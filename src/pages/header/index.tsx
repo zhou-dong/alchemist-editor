@@ -7,6 +7,7 @@ const style = {
 
 const Header = () => (
     <header style={style}>
+    ALCHEMIST HEADER
     </header>
 );
 

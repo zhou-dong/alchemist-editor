@@ -1,17 +1,8 @@
-import fs from "fs";
+// npm i -D @types/webpack-env
+const webpackMarkdownLoader = require.context(`!raw-loader!./`, false, /\.md$/, );
+const webpackTextLoader = require.context(`!raw-loader!./`, false, /\.txt$/, );
 
-const title = "stack example"
+const readme = webpackMarkdownLoader("./README.md").default;
+const example = webpackTextLoader("./code.txt").default
 
-const code = `
-const queue = new Queue(5);
-
-for(let i = 0; i < 5; i++){
-  queue.offer(i);
-}
-
-for(let i = 0; i < 5; i++) {
-  queue.poll();
-}
-
-queue.start(1000);
-`
+export { readme, example };
