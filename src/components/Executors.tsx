@@ -18,8 +18,7 @@ import { StoreState } from "../store";
 
 const styles = {
     main: {
-        // backgroundColor: "#073642",
-        // borderTop: "1px solid",
+        backgroundColor: "#002B36",
         height: "32px",
         lineHeight: "32px",
     },

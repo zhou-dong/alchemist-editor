@@ -4,8 +4,9 @@ import Document from "../models/document";
 import { StoreState } from "../store";
 
 const style = {
-    backgroundColor: "#073642",
+    backgroundColor: "#01313f",
     textAlign: "center",
+    fontSize: "12px",
 } as React.CSSProperties;
 
 const mapStateToProps = (storeState: StoreState): Document => {

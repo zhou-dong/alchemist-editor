@@ -27,9 +27,9 @@ const styles = {
         fontFamily: "'Courier New', Menlo, Monaco, monospace",
     },
     nav: {
-        borderBottom: "1px solid #586e75",
         minWidth: "500px",
-        overflow: "hidden"
+        overflow: "hidden",
+        backgroundColor: "#01313f",
     },
 };
 
