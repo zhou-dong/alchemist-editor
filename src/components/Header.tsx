@@ -1,26 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IFileLocation } from "../interfaces";
-import { StoreState, getFileState } from "../redux/state";
+import Document from "../models/document";
+import { StoreState } from "../store";
 
 const style = {
     backgroundColor: "#073642",
     textAlign: "center",
 } as React.CSSProperties;
 
-export type Props = IFileLocation;
-
-const mapStateToProps = (storeState: StoreState, ownProps: Props): Props => {
-    return getFileState(storeState, ownProps).headerProps;
+const mapStateToProps = (storeState: StoreState): Document => {
+    return storeState.documents[storeState.activated];
 }
 
-@(connect(mapStateToProps, {}) as any)
-export default class extends React.Component<Props> {
-    render() {
-        return (
-            <header style={style}>
-                {`${this.props.folder} > ${this.props.project} > ${this.props.file}`}
-            </header>
-        );
-    }
-}
+const Header = (props: Document) => (
+    <header style={style}>
+        {`${props.categoryName} > ${props.collectionName} > ${props.name}`}
+    </header>
+);
+
+export default connect(mapStateToProps, {})(Header);

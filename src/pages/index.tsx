@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Main from "./main";
+import Executors from "../components/Executors";
 
 const style = {
     display: "flex",
@@ -14,6 +15,7 @@ const style = {
 const App = () => (
     <div style={style}>
         <Header />
+        <Executors />
         <Main />
         <Footer />
     </div>

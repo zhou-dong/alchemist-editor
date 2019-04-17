@@ -1,5 +1,5 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
@@ -12,13 +12,17 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Animatable from "alchemist-core/dist/commons/animatable";
 import { Action, ListIterator } from "alchemist-core";
-import { connect } from "react-redux";
-
 import { defaultSpeed } from "../configurations"
-import { ICode, IFileLocation, IVisualBoard } from "../interfaces";
-import { StoreState, getFileState } from "../redux/state";
+import Document from "../models/document";
+import { StoreState } from "../store";
 
 const styles = {
+    main: {
+        // backgroundColor: "#073642",
+        // borderTop: "1px solid",
+        height: "32px",
+        lineHeight: "32px",
+    },
     icon: {
         width: 20,
         height: 20,
@@ -46,8 +50,6 @@ const emptyIterator: ListIterator<Action> = {
     rewind: () => { },
 }
 
-export type Props = ICode & IVisualBoard & IFileLocation;
-
 interface State {
     isReadyToAnimate: boolean;
     actionsIterator: ListIterator<Action>;
@@ -59,12 +61,11 @@ interface State {
     speed: number;
 }
 
-const mapStateToProps = (storeState: StoreState, ownProps: Props): Props => {
-    return getFileState(storeState, ownProps).executorsProps;
-}
+const mapStateToProps = (storeState: StoreState) => {
+    return storeState.documents[storeState.activated];
+};
 
-@(connect(mapStateToProps, {}) as any)
-export default class extends React.Component<Props, State> implements Animatable {
+class Executor extends React.Component<Document, State> implements Animatable {
     private readonly invalid = -1;
     private timer: any = -1;
 
@@ -79,8 +80,8 @@ export default class extends React.Component<Props, State> implements Animatable
         actionsIterator: emptyIterator,
     }
 
-    private readonly handleBuildClick = (that: React.Component<Props, State>) => {
-        const parentHTML = document.getElementById(this.props.visualBoardId) as HTMLElement
+    private readonly handleBuildClick = (that: React.Component<Document, State>) => {
+        const parentHTML = document.getElementById(this.props.id) as HTMLElement
         parentHTML.innerHTML = ""
 
         import("alchemist-core").then(alchemist => {
@@ -90,7 +91,7 @@ export default class extends React.Component<Props, State> implements Animatable
                 }
             }
 
-            const actionsIterator: ListIterator<Action> = eval(that.props.code + "; stack.listIterator()");
+            const actionsIterator: ListIterator<Action> = eval(that.props.content + "; stack.listIterator()");
 
             that.setState({
                 actionsIterator: actionsIterator,
@@ -185,7 +186,7 @@ export default class extends React.Component<Props, State> implements Animatable
 
     render() {
         return (
-            <Grid container>
+            <Grid container style={styles.main as React.CSSProperties}>
                 <Grid item xs={2}>
                     <IconButton onClick={() => { this.handleBuildClick(this) }} style={styles.iconButton}>
                         <Build style={styles.activatedIcon} />
@@ -234,3 +235,5 @@ export default class extends React.Component<Props, State> implements Animatable
         this.start(speed);
     }
 }
+
+export default connect(mapStateToProps, {})(Executor)
