@@ -6,7 +6,8 @@ import "brace/theme/solarized_dark";
 import { connect } from "react-redux";
 import { StoreState } from "../store";
 import { getMode } from "../utils/fileUtils";
-import { defaultFontSize } from "../configurations";
+
+const defaultFontSize = 14;
 
 const defaultAceOptions: AceOptions = {
     fontFamily: "'Courier New', Menlo, Monaco, monospace",

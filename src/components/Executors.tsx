@@ -12,9 +12,10 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Animatable from "alchemist-core/dist/commons/animatable";
 import { Action, ListIterator } from "alchemist-core";
-import { defaultSpeed } from "../configurations"
 import Document from "../models/document";
 import { StoreState } from "../store";
+
+const defaultSpeed = 200;
 
 const styles = {
     main: {
