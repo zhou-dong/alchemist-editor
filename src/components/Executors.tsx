@@ -95,19 +95,23 @@ class Executor extends React.Component<Props, State> implements Animatable {
             const parentHTML = document.getElementById(that.props.parentId) as HTMLElement
             parentHTML.innerHTML = ""
 
+            let instance = null;
+
             class Stack<T> extends alchemist.Stack<T> {
                 constructor() {
                     super(parentHTML);
+                    instance = this;
                 }
             }
 
             class Queue<T> extends alchemist.Queue<T> {
                 constructor() {
                     super(parentHTML);
+                    instance = this;
                 }
             }
 
-            const actionsIterator: ListIterator<Action> = eval(that.props.content + "; stack.listIterator()");
+            const actionsIterator: ListIterator<Action> = eval(that.props.content + "; instance.listIterator()");
 
             that.setState({
                 actionsIterator: actionsIterator,
