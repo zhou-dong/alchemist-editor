@@ -4,8 +4,11 @@ import "brace/mode/markdown";
 import "brace/mode/plain_text";
 import "brace/theme/solarized_dark";
 import { connect } from "react-redux";
-import { StoreState } from "../store";
+import { Dispatch } from "redux";
+import StoreState from "../store/state";
 import { getMode } from "../utils/fileUtils";
+import Action, { editorOnChangeActionBuilder } from "../store/action";
+import Document from "../models/document";
 
 const defaultFontSize = 14;
 
@@ -30,11 +33,16 @@ const defaultAceEditorProps: AceEditorProps = {
 };
 
 const mapStateToProps = (storeState: StoreState) => ({
-    value: storeState.documents[storeState.activated].content,
-    mode: getMode(storeState.documents[storeState.activated].name)
+    name: storeState.activated.name,
+    value: storeState.activated.content,
+    mode: getMode(storeState.activated.name)
 });
 
-@(connect(mapStateToProps, {}) as any)
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+    onChange: (value: string, event?: any) => dispatch(editorOnChangeActionBuilder({} as Document, value))
+});
+
+@(connect(mapStateToProps, mapDispatchToProps) as any)
 export default class extends AceEditor {
     static defaultProps = defaultAceEditorProps
 }

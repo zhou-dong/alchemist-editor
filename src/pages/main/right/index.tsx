@@ -5,10 +5,9 @@ import Chip from "@material-ui/core/Chip";
 import Code from "@material-ui/icons/Code";
 import { connect } from "react-redux";
 import Editor from "../../../components/Editor";
-import { StoreState } from "../../../store";
+import StoreState from "../../../store/state";
 import Document from "../../../models/document";
-import Action from "../../../store/action";
-import { documentNameClickActionBuilder } from "../../../store/helper";
+import Action, { documentNameOnClickActionBuilder } from "../../../store/action";
 
 const styles = {
     layout: {
@@ -33,20 +32,12 @@ const styles = {
     },
 };
 
-type Documents = {
-    [key: string]: Document;
-}
-
 type Props = {
-    documents: Documents;
-    handleClick: (document: Document) => any;
-}
-
-type FileNameProps = {
     document: Document;
     handleClick: (document: Document) => any;
 }
-const FileName = ({ document, handleClick }: FileNameProps) => (
+
+const FileName = ({ document, handleClick }: Props) => (
     <Chip
         avatar={<Code style={styles.icon} />}
         style={styles.chip}
@@ -57,18 +48,37 @@ const FileName = ({ document, handleClick }: FileNameProps) => (
 );
 
 const mapStateToProps = (storeState: StoreState) => ({
-    documents: storeState.documents
+    document: storeState.activated
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-    handleClick: (document: Document) => dispatch(documentNameClickActionBuilder(document))
+    handleClick: (document: Document) => dispatch(documentNameOnClickActionBuilder(document))
 });
 
-const NavBar = (props: Props) => (
-    <nav style={styles.nav}>
-        {Object.values(props.documents).map(value => <FileName document={value} handleClick={props.handleClick} />)}
-    </nav>
-);
+class NavBar extends React.Component<Props, {}>{
+
+    private size = 3;
+    private documents: { [docId: string]: Document } = {};
+
+    render() {
+        const { document, handleClick } = this.props;
+        if (!this.documents[document.id]) {
+            const documentsLength = Object.keys(this.documents).length
+            if (documentsLength === this.size) {
+                delete this.documents[Object.keys(this.documents)[0]]
+            }
+            this.documents[document.id] = document;
+        }
+        const names = Object
+            .values(this.documents)
+            .map((value, index) => <FileName key={index} document={value} handleClick={handleClick} />)
+        return (
+            <nav style={styles.nav} >
+                {names}
+            </nav>
+        );
+    };
+}
 
 const ConnectedNavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
 

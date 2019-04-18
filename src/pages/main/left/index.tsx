@@ -1,5 +1,6 @@
 import React from 'react';
 import Resizable from "re-resizable";
+import Nav from "../../../components/Nav";
 
 const layoutStyle = {
     flex: 1,
@@ -16,50 +17,8 @@ const style = {
 
 export default () => (
     <Resizable enable={{ right: true }} >
-            <nav style={style}>
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-                Queue<br />
-                Stack <br />
-
-                Queue<br />
-                Stack <br />
-
-
-                hello world
+        <nav style={style}>
+            <Nav />
         </nav>
     </Resizable>
 );

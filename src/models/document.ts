@@ -1,31 +1,26 @@
 // Basic writable document
 import Code from "./code";
 
-export default interface Document extends Code {
+type Document = Code & {
     name: string;
-    content: string;
     categoryName: string;
     collectionName: string;
-    extension(): string | undefined;
+    extension: string | undefined;
     id: string;
 }
 
-export class Doc implements Document {
-    name: string;
-    content: string;
-    categoryName: string;
-    collectionName: string;
-    id: string;
+export default Document
 
-    constructor(name: string, content: string, categoryName: string, collectionName: string) {
-        this.name = name;
-        this.content = content;
-        this.collectionName = collectionName;
-        this.categoryName = categoryName;
-        this.id = `${this.categoryName}-${this.collectionName}-${this.name}`;
-    }
-
-    extension(): string | undefined {
-        return this.name.split(".").pop();
-    }
-}
+export const documentBuilder = (
+    name: string,
+    content: string,
+    categoryName: string,
+    collectionName: string
+): Document => ({
+    name,
+    content,
+    categoryName,
+    collectionName,
+    id: `${categoryName}-${collectionName}-${name}`,
+    extension: name.split(".").pop()
+});

@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { connect } from "react-redux";
-import Document from "../models/document";
 import { getMode } from "../utils/fileUtils";
-import { StoreState } from "../store";
+import StoreState from "../store/state";
 
 const style = {
     flex: 2,
@@ -12,7 +11,13 @@ const style = {
     color: "palegoldenrod",
 }
 
-const Visual = (props: Document) => {
+interface Props {
+    id: string;
+    content: string;
+    name: string;
+}
+
+const Visual = (props: Props) => {
     switch (getMode(props.name)) {
         case "javascript":
             return (<main style={style} id={props.id} ></main>);
@@ -23,8 +28,9 @@ const Visual = (props: Document) => {
     }
 };
 
-const mapStateToProps = (storeState: StoreState) => {
-    return storeState.documents[storeState.activated];
+const mapStateToProps = (storeState: StoreState): Props => {
+    const { id, content, name } = storeState.activated;
+    return ({ id, content, name });
 }
 
 export default connect(mapStateToProps, {})(Visual)

@@ -12,8 +12,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Animatable from "alchemist-core/dist/commons/animatable";
 import { Action, ListIterator } from "alchemist-core";
-import Document from "../models/document";
-import { StoreState } from "../store";
+import StoreState from "../store/state";
 
 const defaultSpeed = 200;
 
@@ -31,6 +30,11 @@ const styles = {
         width: 20,
         height: 20,
         color: "green",
+    },
+    unActivatedIcon: {
+        width: 20,
+        height: 20,
+        color: "grey",
     },
     iconButton: {
         margin: 0,
@@ -61,11 +65,13 @@ interface State {
     speed: number;
 }
 
-const mapStateToProps = (storeState: StoreState) => {
-    return storeState.documents[storeState.activated];
-};
+interface Props {
+    parentId: string;
+    content: string;
+    extension: string | undefined;
+}
 
-class Executor extends React.Component<Document, State> implements Animatable {
+class Executor extends React.Component<Props, State> implements Animatable {
     private readonly invalid = -1;
     private timer: any = -1;
 
@@ -80,12 +86,22 @@ class Executor extends React.Component<Document, State> implements Animatable {
         actionsIterator: emptyIterator,
     }
 
-    private readonly handleBuildClick = (that: React.Component<Document, State>) => {
-        const parentHTML = document.getElementById(this.props.id) as HTMLElement
-        parentHTML.innerHTML = ""
-
+    private readonly handleBuildClick = (that: React.Component<Props, State>) => {
         import("alchemist-core").then(alchemist => {
+            if (that.props.extension !== "js") {
+                return;
+            }
+
+            const parentHTML = document.getElementById(that.props.parentId) as HTMLElement
+            parentHTML.innerHTML = ""
+
             class Stack<T> extends alchemist.Stack<T> {
+                constructor() {
+                    super(parentHTML);
+                }
+            }
+
+            class Queue<T> extends alchemist.Queue<T> {
                 constructor() {
                     super(parentHTML);
                 }
@@ -148,7 +164,7 @@ class Executor extends React.Component<Document, State> implements Animatable {
                     style={styles.iconButton}
                     onClick={this.handlePlayClick}
                     disabled={this.state.currentStep === this.state.totalSteps}>
-                    <Play />
+                    <Play style={styles.activatedIcon} />
                 </IconButton>
             );
         }
@@ -184,21 +200,31 @@ class Executor extends React.Component<Document, State> implements Animatable {
         </React.Fragment>
     );
 
-    render() {
-        return (
-            <Grid container style={styles.main as React.CSSProperties}>
-                <Grid item xs={2}>
-                    <IconButton onClick={() => { this.handleBuildClick(this) }} style={styles.iconButton}>
-                        <Build style={styles.activatedIcon} />
-                    </IconButton>
-                    {this.state.isReadyToAnimate && this.getPlayButton()}
-                    {this.state.isReadyToAnimate && this.getRefreshButton()}
-                </Grid>
-                <Grid item xs={10}>
-                    {this.state.isReadyToAnimate && this.getStepper()}
-                </Grid>
+    private readonly readyToAnimate = (): boolean => {
+        return this.props.extension === "js" && this.state.isReadyToAnimate
+    }
+
+    private readonly getBuildBar = () => (
+        <Grid container style={styles.main as React.CSSProperties}>
+            <Grid item xs={2}>
+                <IconButton
+                    disabled={this.props.extension !== "js"}
+                    onClick={() => { this.handleBuildClick(this) }}
+                    style={styles.iconButton}>
+                    <Build style={this.props.extension === "js" ? styles.activatedIcon : styles.unActivatedIcon} />
+                </IconButton>
+                {this.readyToAnimate() && this.getPlayButton()}
+                {this.readyToAnimate() && this.getRefreshButton()}
             </Grid>
-        );
+            <Grid item xs={10}>
+                {this.readyToAnimate() && this.getStepper()}
+            </Grid>
+        </Grid>
+    );
+
+    render() {
+        // return this.props.extension === "js" ? this.getBuildBar() : <React.Fragment></React.Fragment>;
+        return this.getBuildBar();
     }
 
     isRunning(): boolean {
@@ -235,5 +261,10 @@ class Executor extends React.Component<Document, State> implements Animatable {
         this.start(speed);
     }
 }
+
+const mapStateToProps = (storeState: StoreState) => {
+    const { id, content, extension } = storeState.activated;
+    return { parentId: id, content, extension };
+};
 
 export default connect(mapStateToProps, {})(Executor)
