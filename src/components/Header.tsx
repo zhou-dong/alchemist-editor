@@ -6,7 +6,7 @@ import StoreState from "../store/state";
 const style = {
     backgroundColor: "#01313f",
     textAlign: "center",
-    fontSize: "12px",
+    fontSize: "14px",
 } as React.CSSProperties;
 
 const Header = (props: Document) => (
