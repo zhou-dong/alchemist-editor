@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/alchemist-editor/precache-manifest.4b593947dfd43be039e943523d6b48ea.js"
+  "/alchemist-editor/precache-manifest.6757a1e2e3a20650a67ce57dada2a5ec.js"
 );
 
 workbox.clientsClaim();
