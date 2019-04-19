@@ -11,7 +11,7 @@ import Action, { documentNameOnClickActionBuilder } from "../../../store/action"
 
 const styles = {
     layout: {
-        flex: 2,
+        flex: 1,
         height: "100%",
         overflow: "scroll",
         backgroundColor: "#002B36"
@@ -83,7 +83,7 @@ class NavBar extends React.Component<Props, {}>{
 const ConnectedNavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
 
 export default () => (
-    <Resizable enable={{ left: true }}>
+    <Resizable enable={{ left: true }} defaultSize={{ width: 600 }} >
         <aside style={styles.layout}>
             <ConnectedNavBar />
             <Editor />

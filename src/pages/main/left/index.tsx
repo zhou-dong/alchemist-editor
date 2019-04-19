@@ -16,7 +16,7 @@ const style = {
 };
 
 export default () => (
-    <Resizable enable={{ right: true }} >
+    <Resizable enable={{ right: true }} defaultSize={{ width: 180 }} >
         <nav style={style}>
             <Nav />
         </nav>

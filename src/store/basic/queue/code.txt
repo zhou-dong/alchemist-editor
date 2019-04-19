@@ -1,6 +1,6 @@
 // Queue Example
 
-const capacity = 5;
+const capacity = 15;
 const queue = new Queue(capacity);
 
 for(let i = 0; i < capacity; i++){
@@ -10,5 +10,3 @@ for(let i = 0; i < capacity; i++){
 for(let i = 0; i < capacity; i++) {
   queue.poll();
 }
-
-queue.start(500);

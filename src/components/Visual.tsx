@@ -5,7 +5,7 @@ import { getMode } from "../utils/fileUtils";
 import StoreState from "../store/state";
 
 const style = {
-    flex: 2,
+    flex: 1,
     overflow: "scroll",
     backgroundColor: "#586e75",
     color: "palegoldenrod",
