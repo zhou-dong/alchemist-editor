@@ -6,43 +6,57 @@ import Document from "../models/document";
 import Collection from "../models/collection";
 import Category from "../models/category";
 import Action, { documentNameOnClickActionBuilder } from "../store/action";
+import "../../node_modules/react-treeview/react-treeview.css"; 
+import "./Nav.css";
 
-let { Treebeard } = require("react-treebeard");
+import TreeView from "react-treeview";
 
-interface TreeNode {
-    name: string;
-    toggled: boolean;
-    children?: TreeNode[];
-    document?: Document;
+const createTreeNodeByDocument = (document: Document, onDocumentClick: (document: Document) => any) => (
+    <div key={document.id} onClick={() => onDocumentClick(document)}>
+        {document.name}
+    </div>
+);
+
+const createTreeNodeByCollection = (
+    collection: Collection,
+    activated: Document,
+    onDocumentClick: (document: Document) => any
+) => {
+    const collapsed: boolean = activated.collectionName !== collection.name;
+    return (
+        <TreeView nodeLabel={collection.name} key={collection.name} defaultCollapsed={collapsed}>
+            {Object.values(collection.documents)
+                .map(document => createTreeNodeByDocument(document, onDocumentClick))}
+        </TreeView>
+    );
 }
 
-const createTreeNodeByDocument = (document: Document): TreeNode => ({
-    name: document.name, toggled: false, document: document,
-});
-
-const createTreeNodeByCollection = (collection: Collection): TreeNode => ({
-    name: collection.name,
-    toggled: true,
-    children: Object.values(collection.documents).map(createTreeNodeByDocument)
-});
-
-const createTreeNodeByCategory = (category: Category): TreeNode => ({
-    name: category.name,
-    toggled: true,
-    children: Object.values(category.collections).map(createTreeNodeByCollection)
-});
-
-const createTreeNodes = (storeState: StoreState): TreeNode[] => {
-    return Object.values(storeState.categories).map(createTreeNodeByCategory)
+const createTreeNodeByCategory = (
+    category: Category,
+    activated: Document,
+    onDocumentClick: (document: Document) => any
+) => {
+    const collapsed: boolean = (activated.categoryName !== category.name);
+    return (
+        <TreeView nodeLabel={category.name} key={category.name} defaultCollapsed={collapsed}>
+            {Object.values(category.collections)
+                .map(coll => createTreeNodeByCollection(coll, activated, onDocumentClick))}
+        </TreeView>
+    );
 }
 
-const createTrees = ({ storeState, onToggle }: Props) => {
-    return createTreeNodes(storeState).map((node, i) => <Treebeard key={i} data={node} onToggle={onToggle} />);
-}
+const createTreeNodes = (storeState: StoreState, onDocumentClick: (document: Document) => any) => (
+    Object.values(storeState.categories)
+        .map(category => createTreeNodeByCategory(category, storeState.activated, onDocumentClick))
+)
 
 interface Props {
     storeState: StoreState;
-    onToggle: (node: TreeNode, toggled: boolean) => any;
+    onDocumentClick: (document: Document) => any;
+}
+
+const createTrees = ({ storeState, onDocumentClick }: Props) => {
+    return createTreeNodes(storeState, onDocumentClick);
 }
 
 const NavTree = (props: Props) => (
@@ -54,11 +68,7 @@ const NavTree = (props: Props) => (
 const mapStateToProps = (storeState: StoreState) => ({ storeState });
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-    onToggle: (node: TreeNode, toggled: boolean) => {
-        if (node.document) {
-            dispatch(documentNameOnClickActionBuilder(node.document))
-        }
-    }
+    onDocumentClick: (document: Document) => dispatch(documentNameOnClickActionBuilder(document))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavTree);

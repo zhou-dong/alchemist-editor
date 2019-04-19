@@ -39,7 +39,7 @@ type Props = {
 
 const FileName = ({ document, handleClick }: Props) => (
     <Chip
-        avatar={<Code style={styles.icon} />}
+        icon={<Code style={styles.icon} />}
         style={styles.chip}
         label={document.name}
         onClick={() => handleClick(document)}
