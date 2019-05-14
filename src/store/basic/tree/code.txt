@@ -1,0 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+const root = new TreeNode("root");
+
+root.left = new TreeNode("r-l");
+root.right = new TreeNode("r-r");
+
+root.left.left = new TreeNode("r-l-l");
+root.left.right = new TreeNode("r-l-r");
+
+root.right.left = new TreeNode("r-r-l");
+root.right.right = new TreeNode("r-r-r");
+
+root.left.left.left = new TreeNode("r-l-l-l");
+root.left.left.right = new TreeNode("r-l-l-r");
+
+root.left.left.left.left = new TreeNode("r-l-l-l-l");
+root.left.left.left.right = new TreeNode("r-l-l-l-r");
+
+root.right.left.left = new TreeNode("r-r-l-l");
+root.right.left.right = new TreeNode("r-r-l-r");
+
+root.right.left.left.left = new TreeNode("r-r-l-l-l");
+root.right.left.left.right = new TreeNode("r-r-l-l-r");
+
+console.log(root.left.val);
+console.log(root.right.val);

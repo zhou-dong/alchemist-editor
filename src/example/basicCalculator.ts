@@ -42,5 +42,5 @@ while (!stack2.isEmpty()) {
     }
 }
 
-index.start(500);
+// index.start(500);
 console.log(stack1.peek());

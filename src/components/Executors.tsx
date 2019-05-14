@@ -14,7 +14,7 @@ import Animatable from "alchemist-core/dist/commons/animatable";
 import { Action, ListIterator } from "alchemist-core";
 import StoreState from "../store/state";
 
-const defaultSpeed = 200;
+const speeds = [1500, 1200, 900, 600, 300];
 
 const styles = {
     main: {
@@ -62,7 +62,7 @@ interface State {
     hasPrevious: boolean;
     hasNext: boolean;
     isRunning: boolean;
-    speed: number;
+    speedIndex: number;
 }
 
 interface Props {
@@ -74,9 +74,9 @@ interface Props {
 class Executor extends React.Component<Props, State> implements Animatable {
     private readonly invalid = -1;
     private timer: any = -1;
+    private speedIndex = 2;
 
     readonly state = {
-        speed: defaultSpeed,
         isReadyToAnimate: false,
         currentStep: 0,
         totalSteps: 0,
@@ -84,6 +84,7 @@ class Executor extends React.Component<Props, State> implements Animatable {
         hasNext: false,
         isRunning: false,
         actionsIterator: emptyIterator,
+        speedIndex: 2,
     }
 
     private readonly handleBuildClick = (that: React.Component<Props, State>) => {
@@ -111,7 +112,16 @@ class Executor extends React.Component<Props, State> implements Animatable {
                 }
             }
 
-            const actionsIterator: ListIterator<Action> = eval(that.props.content + "; instance.listIterator()");
+            const actions = new alchemist.Actions([]);
+            const snapshots = ([] as any);
+            const TreeNode = (val: string) => {
+                return alchemist.TreeNode(val, snapshots, actions, parentHTML);
+            }
+
+            // const actionsIterator: ListIterator<Action> = eval(that.props.content + "; instance.listIterator()");
+
+            eval(that.props.content);
+            const actionsIterator: ListIterator<Action> = actions;
 
             that.setState({
                 actionsIterator: actionsIterator,
@@ -140,7 +150,8 @@ class Executor extends React.Component<Props, State> implements Animatable {
     }
 
     private readonly handlePlayClick = () => {
-        this.start(this.state.speed);
+        console.log(this.speedIndex);
+        this.start(speeds[this.speedIndex]);
     }
 
     private readonly handlePause = () => {
@@ -153,6 +164,24 @@ class Executor extends React.Component<Props, State> implements Animatable {
             hasPrevious: this.state.actionsIterator.hasPrevious(),
             hasNext: this.state.actionsIterator.hasNext(),
         });
+    }
+
+    private readonly handleSlower = () => {
+        this.setState({
+            speedIndex: this.state.speedIndex - 1
+        })
+        --this.speedIndex;
+        this.handlePause();
+        this.handlePlayClick();
+    }
+
+    private readonly handleFaster = () => {
+        this.setState({
+            speedIndex: this.state.speedIndex + 1
+        })
+        ++this.speedIndex;
+        this.handlePause();
+        this.handlePlayClick();
     }
 
     private readonly getPlayButton = () => {
@@ -181,27 +210,61 @@ class Executor extends React.Component<Props, State> implements Animatable {
     )
 
     private readonly getStepper = () => (
-        <React.Fragment>
-            <MobileStepper
-                style={{ padding: 0 }}
-                variant="progress"
-                steps={this.state.totalSteps + 1}
-                position="static"
-                activeStep={this.state.currentStep}
-                nextButton={
-                    <Button size="small"
-                        onClick={this.handleNext}
-                        disabled={this.state.currentStep === this.state.totalSteps}>
-                        Next<KeyboardArrowRight />
+        <MobileStepper
+            color="primary"
+            style={{ padding: 0 }}
+            variant="progress"
+            steps={this.state.totalSteps + 1}
+            position="static"
+            activeStep={this.state.currentStep}
+            nextButton={
+                <Button
+                    size="small"
+                    color="primary"
+                    onClick={this.handleNext}
+                    disabled={this.state.currentStep === this.state.totalSteps}>
+                    Next<KeyboardArrowRight />
+                </Button>
+            }
+            backButton={
+                <Button
+                    size="small"
+                    color="primary"
+                    onClick={this.handleBack}
+                    disabled={this.state.currentStep === 0}>
+                    <KeyboardArrowLeft />Back
                     </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={this.handleBack} disabled={this.state.currentStep === 0}>
-                        <KeyboardArrowLeft />Back
-                    </Button>
-                }
-            />
-        </React.Fragment>
+            }
+        />
+    );
+
+    private readonly getSpeedo = () => (
+        <MobileStepper
+            color="primary"
+            style={{ padding: 0 }}
+            // variant="progress"
+            steps={speeds.length}
+            position="static"
+            activeStep={this.state.speedIndex}
+            nextButton={
+                <Button
+                    size="small"
+                    color="primary"
+                    onClick={this.handleFaster}
+                    disabled={this.state.speedIndex === speeds.length}>
+                    Faster<KeyboardArrowRight />
+                </Button>
+            }
+            backButton={
+                <Button
+                    size="small"
+                    color="primary"
+                    onClick={this.handleSlower}
+                    disabled={this.state.speedIndex === 0}>
+                    <KeyboardArrowLeft />Slower
+                </Button>
+            }
+        />
     );
 
     private readonly readyToAnimate = (): boolean => {
@@ -210,7 +273,7 @@ class Executor extends React.Component<Props, State> implements Animatable {
 
     private readonly getBuildBar = () => (
         <Grid container style={styles.main as React.CSSProperties}>
-            <Grid item xs={2}>
+            <Grid item xs={4}>
                 <IconButton
                     disabled={this.props.extension !== "js"}
                     onClick={() => { this.handleBuildClick(this) }}
@@ -220,8 +283,11 @@ class Executor extends React.Component<Props, State> implements Animatable {
                 {this.readyToAnimate() && this.getPlayButton()}
                 {this.readyToAnimate() && this.getRefreshButton()}
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={4}>
                 {this.readyToAnimate() && this.getStepper()}
+            </Grid>
+            <Grid item xs={4}>
+                {this.readyToAnimate() && this.getSpeedo()}
             </Grid>
         </Grid>
     );
