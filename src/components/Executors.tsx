@@ -39,6 +39,7 @@ const styles = {
     iconButton: {
         margin: 0,
         padding: 1,
+        color: "#93A1A1",
     }
 }
 
@@ -187,55 +188,58 @@ class Executor extends React.Component<Props, State> implements Animatable {
     private readonly getPlayButton = () => {
         if (this.state.isRunning) {
             return (
-                <IconButton onClick={this.handlePause} style={styles.iconButton} >
-                    <Pause style={styles.activatedIcon} />
-                </IconButton>
+                <Button onClick={this.handlePause} style={styles.iconButton} >
+                    <Pause style={styles.activatedIcon} /> Pause
+                </Button>
             );
         } else {
             return (
-                <IconButton
+                <Button
                     style={styles.iconButton}
                     onClick={this.handlePlayClick}
                     disabled={this.state.currentStep === this.state.totalSteps}>
                     <Play style={styles.activatedIcon} />
-                </IconButton>
+                    Play
+                </Button>
             );
         }
     }
 
     private readonly getRefreshButton = () => (
-        <IconButton onClick={this.handleRefreshClick} style={styles.iconButton}>
-            <Refresh style={styles.activatedIcon} />
-        </IconButton>
+        <Button onClick={this.handleRefreshClick} style={styles.iconButton}>
+            <Refresh style={styles.activatedIcon} /> Refresh
+        </Button>
     )
 
     private readonly getStepper = () => (
-        <MobileStepper
-            color="primary"
-            style={{ padding: 0 }}
-            variant="progress"
-            steps={this.state.totalSteps + 1}
-            position="static"
-            activeStep={this.state.currentStep}
-            nextButton={
-                <Button
-                    size="small"
-                    color="primary"
-                    onClick={this.handleNext}
-                    disabled={this.state.currentStep === this.state.totalSteps}>
-                    Next<KeyboardArrowRight />
-                </Button>
-            }
-            backButton={
-                <Button
-                    size="small"
-                    color="primary"
-                    onClick={this.handleBack}
-                    disabled={this.state.currentStep === 0}>
-                    <KeyboardArrowLeft />Back
+        <React.Fragment>
+            <MobileStepper
+                color="primary"
+                style={{ padding: 0 }}
+                variant="progress"
+                steps={this.state.totalSteps + 1}
+                position="static"
+                activeStep={this.state.currentStep}
+                nextButton={
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={this.handleNext}
+                        disabled={this.state.currentStep === this.state.totalSteps}>
+                        Next<KeyboardArrowRight />
                     </Button>
-            }
-        />
+                }
+                backButton={
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={this.handleBack}
+                        disabled={this.state.currentStep === 0}>
+                        <KeyboardArrowLeft />Back
+                    </Button>
+                }
+            />
+        </React.Fragment>
     );
 
     private readonly getSpeedo = () => (
@@ -273,20 +277,28 @@ class Executor extends React.Component<Props, State> implements Animatable {
 
     private readonly getBuildBar = () => (
         <Grid container style={styles.main as React.CSSProperties}>
-            <Grid item xs={4}>
-                <IconButton
+            <Grid item xs={1}>
+                <Button
                     disabled={this.props.extension !== "js"}
                     onClick={() => { this.handleBuildClick(this) }}
                     style={styles.iconButton}>
                     <Build style={this.props.extension === "js" ? styles.activatedIcon : styles.unActivatedIcon} />
-                </IconButton>
+                    Build
+                </Button>
+            </Grid>
+            <Grid item xs={1}>
                 {this.readyToAnimate() && this.getPlayButton()}
+            </Grid>
+            <Grid item xs={1}>
                 {this.readyToAnimate() && this.getRefreshButton()}
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={5}>
                 {this.readyToAnimate() && this.getStepper()}
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={1}>
+                
+            </Grid>
+            <Grid item xs={3}>
                 {this.readyToAnimate() && this.getSpeedo()}
             </Grid>
         </Grid>
