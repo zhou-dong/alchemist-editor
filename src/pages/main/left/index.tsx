@@ -13,7 +13,7 @@ const style = {
     ...layoutStyle,
     overflow: "scroll",
     backgroundColor: "#002B36",
-};
+} as React.CSSProperties;
 
 export default () => (
     <Resizable enable={{ right: true }} defaultSize={{ width: 180 }} >

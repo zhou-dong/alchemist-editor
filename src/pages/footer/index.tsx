@@ -1,13 +1,15 @@
 import React from 'react';
 
 const style = {
-    backgroundColor: "#073642",
+    backgroundColor: "#01313f",
     textAlign: "center",
+    padding: "3px",
+    fontSize: "12px",
 } as React.CSSProperties;
 
 const Footer = () => (
     <footer style={style}>
-        [ALCHEMIST-EDITOR] ALGORITHMS AND DATA STRUCTERS VISUALIZATION ONLINE EDITOR
+        [ALCHEMIST-EDITOR] algorithms and data structures visualization online editor.
     </footer>
 );
 

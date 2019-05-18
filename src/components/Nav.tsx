@@ -6,13 +6,13 @@ import Document from "../models/document";
 import Collection from "../models/collection";
 import Category from "../models/category";
 import Action, { documentNameOnClickActionBuilder } from "../store/action";
-import "../../node_modules/react-treeview/react-treeview.css"; 
+import "../../node_modules/react-treeview/react-treeview.css";
 import "./Nav.css";
 
 import TreeView from "react-treeview";
 
 const createTreeNodeByDocument = (document: Document, onDocumentClick: (document: Document) => any) => (
-    <div key={document.id} onClick={() => onDocumentClick(document)}>
+    <div key={document.id} onClick={() => onDocumentClick(document)} className="tree-view_item-text">
         {document.name}
     </div>
 );
@@ -60,9 +60,9 @@ const createTrees = ({ storeState, onDocumentClick }: Props) => {
 }
 
 const NavTree = (props: Props) => (
-    <React.Fragment>
+    <div className="folder-nav">
         {createTrees(props)}
-    </React.Fragment>
+    </div>
 );
 
 const mapStateToProps = (storeState: StoreState) => ({ storeState });

@@ -10,7 +10,7 @@ import { getMode } from "../utils/fileUtils";
 import Action, { editorOnChangeActionBuilder } from "../store/action";
 import Document from "../models/document";
 
-const defaultFontSize = 14;
+const defaultFontSize = 16;
 
 const defaultAceOptions: AceOptions = {
     fontFamily: "'Courier New', Menlo, Monaco, monospace",

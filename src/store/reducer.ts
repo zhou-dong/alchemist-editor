@@ -16,7 +16,7 @@ const basicCategory: Category = {
 }
 
 const initialState: StoreState = {
-    activated: basicStack.documents["Code.js"],
+    activated: basicTree.documents["Code.js"],
     categories: {
         "basic": basicCategory
     },

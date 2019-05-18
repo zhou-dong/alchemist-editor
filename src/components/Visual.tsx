@@ -19,12 +19,9 @@ interface Props {
 
 const Visual = (props: Props) => {
     switch (getMode(props.name)) {
-        case "javascript":
-            return (<main style={style} id={props.id} ></main>);
-        case "markdown":
-            return (<main style={style}><ReactMarkdown source={props.content} /></main>);
-        default:
-            return (<main style={style}>{props.content}</main>)
+        case "javascript": return (<main style={style} id={props.id} ></main>);
+        case "markdown": return (<main style={style}><ReactMarkdown source={props.content} /></main>);
+        default: return (<main style={style}>{props.content}</main>)
     }
 };
 
