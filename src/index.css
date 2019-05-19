@@ -31,3 +31,5 @@ code {
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+.hidden{display: none;}

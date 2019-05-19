@@ -1,3 +1,1 @@
-import Visual from "../../../components/Visual";
-
-export default Visual;
+export { default } from "../../../components/Visual";

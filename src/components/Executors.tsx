@@ -92,7 +92,7 @@ class Executor extends React.Component<Props, State> implements Animatable {
             if (that.props.extension !== "js") {
                 return;
             }
-
+            
             const parentHTML = document.getElementById(that.props.parentId) as HTMLElement
             parentHTML.innerHTML = ""
 

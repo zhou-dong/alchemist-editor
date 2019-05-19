@@ -9,6 +9,8 @@ const style = {
     overflow: "scroll",
     backgroundColor: "#586e75",
     color: "palegoldenrod",
+    paddingLeft: "10px",
+    paddingRight: "10px",
 }
 
 interface Props {
