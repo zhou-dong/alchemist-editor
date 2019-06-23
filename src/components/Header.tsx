@@ -6,7 +6,6 @@ import StoreState from "../store/state";
 const style = {
     backgroundColor: "#01313f",
     textAlign: "center",
-    fontFamily: "monospace, 'Open Sans', sans-serif, 'Courier New', Menlo, Monaco",
     fontSize: "14px",
     padding: "3px",
 } as React.CSSProperties;

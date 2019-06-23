@@ -24,20 +24,9 @@ const styles = {
         width: 20,
         height: 20,
     },
-    activatedIcon: {
-        width: 20,
-        height: 20,
-        color: "green",
-    },
-    unActivatedIcon: {
-        width: 20,
-        height: 20,
-        color: "grey",
-    },
     iconButton: {
         margin: 0,
         padding: 1,
-        color: "#93A1A1",
         fontFamily: "inherit",
     }
 }
@@ -92,7 +81,7 @@ class Executor extends React.Component<Props, State> implements Animatable {
             if (that.props.extension !== "js") {
                 return;
             }
-            
+
             const parentHTML = document.getElementById(that.props.parentId) as HTMLElement
             parentHTML.innerHTML = ""
 
@@ -191,8 +180,8 @@ class Executor extends React.Component<Props, State> implements Animatable {
     private readonly getPlayButton = () => {
         if (this.state.isRunning) {
             return (
-                <Button onClick={this.handlePause} style={styles.iconButton} size="small" >
-                    <Pause style={styles.activatedIcon} /> Pause
+                <Button onClick={this.handlePause} style={styles.iconButton} size="small" color="primary" >
+                    <Pause /> Pause
                 </Button>
             );
         } else {
@@ -201,8 +190,9 @@ class Executor extends React.Component<Props, State> implements Animatable {
                     size="small"
                     style={styles.iconButton}
                     onClick={this.handlePlayClick}
+                    color="primary"
                     disabled={this.state.currentStep === this.state.totalSteps}>
-                    <Play style={styles.activatedIcon} />
+                    <Play />
                     Play
                 </Button>
             );
@@ -210,8 +200,8 @@ class Executor extends React.Component<Props, State> implements Animatable {
     }
 
     private readonly getRefreshButton = () => (
-        <Button onClick={this.handleRefreshClick} style={styles.iconButton} size="small">
-            <Refresh style={styles.activatedIcon} /> Refresh
+        <Button onClick={this.handleRefreshClick} style={styles.iconButton} size="small" color="primary" >
+            <Refresh /> Refresh
         </Button>
     )
 
@@ -219,7 +209,7 @@ class Executor extends React.Component<Props, State> implements Animatable {
         <React.Fragment>
             <MobileStepper
                 color="primary"
-                style={{ padding: 0 }}
+                style={{ padding: 0, backgroundColor: "#01313f" }}
                 variant="progress"
                 steps={this.state.totalSteps + 1}
                 position="static"
@@ -250,8 +240,8 @@ class Executor extends React.Component<Props, State> implements Animatable {
 
     private readonly getSpeedo = () => (
         <MobileStepper
-            color="primary"
-            style={{ padding: 0 }}
+            color="secondary"
+            style={{ padding: 0, backgroundColor: "#01313f" }}
             steps={speeds.length}
             position="static"
             activeStep={this.state.speedIndex}
@@ -288,8 +278,9 @@ class Executor extends React.Component<Props, State> implements Animatable {
                 <Button
                     disabled={this.props.extension !== "js"}
                     onClick={() => { this.handleBuildClick(this) }}
+                    color="primary"
                     style={styles.iconButton}>
-                    <Build style={this.props.extension === "js" ? styles.activatedIcon : styles.unActivatedIcon} />
+                    <Build />
                     Build
                 </Button>
             </Grid>
