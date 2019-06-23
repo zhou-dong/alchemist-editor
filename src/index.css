@@ -20,7 +20,9 @@ code {
   stroke-width: 3px;
 }
 
-.node text { font: 12px sans-serif; }
+.node text { 
+  font: 12px ; 
+}
 
 .node--internal text {
   text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
