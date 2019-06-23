@@ -4,18 +4,18 @@
   "private": true,
   "homepage": "https://zhou-dong.github.io/alchemist-editor",
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^3.0.2",
-    "re-resizable": "^4.11.0",
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "re-resizable": "^5.0.1",
     "react": "^16.8.6",
-    "react-ace": "^6.3.2",
+    "react-ace": "^7.0.2",
     "react-dom": "^16.8.6",
-    "react-markdown": "^4.0.6",
-    "react-redux": "^7.0.1",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.0-next.b0cbf2ca",
+    "react-markdown": "^4.0.9",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.0.1",
     "react-treeview": "^0.4.7",
-    "typescript": "^3.2.2"
+    "typescript": "^3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,15 +35,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/jest": "^23.3.14",
-    "@types/node": "^10.14.4",
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.3",
-    "@types/react-redux": "^7.0.6",
-    "@types/react-router-dom": "^4.3.2",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.1.0",
+    "@types/react-router-dom": "^4.3.4",
     "@types/react-treeview": "^0.4.2",
     "@types/webpack-env": "^1.13.9",
     "gh-pages": "^2.0.1",
-    "raw-loader": "^2.0.0"
+    "raw-loader": "^3.0.0"
   }
 }

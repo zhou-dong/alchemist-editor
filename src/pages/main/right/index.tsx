@@ -1,5 +1,5 @@
 import React from "react";
-import Resizable from "re-resizable";
+import { Resizable } from "re-resizable";
 import { Dispatch } from "redux";
 import Chip from "@material-ui/core/Chip";
 import Code from "@material-ui/icons/Code";
@@ -83,7 +83,8 @@ class NavBar extends React.Component<Props, {}>{
 const ConnectedNavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
 
 export default () => (
-    <Resizable enable={{ left: true }} defaultSize={{ width: 600 }} >
+    // <Resizable enable={{ left: true }} defaultSize={{ width: 600 }} >
+    <Resizable enable={{ left: true }} >
         <aside style={styles.layout}>
             <ConnectedNavBar />
             <Editor />

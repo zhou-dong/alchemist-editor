@@ -1,5 +1,5 @@
-import React from 'react';
-import Resizable from "re-resizable";
+import React from "react";
+import { Resizable } from "re-resizable";
 import Nav from "../../../components/Nav";
 
 const layoutStyle = {
@@ -15,8 +15,13 @@ const style = {
     backgroundColor: "#002B36",
 } as React.CSSProperties;
 
+const defaultSize = {
+    width: 180
+}
+
 export default () => (
-    <Resizable enable={{ right: true }} defaultSize={{ width: 180 }} >
+    // <Resizable enable={{ right: true }} defaultSize={defaultSize} >
+    <Resizable enable={{ right: true }}>
         <nav style={style}>
             <Nav />
         </nav>

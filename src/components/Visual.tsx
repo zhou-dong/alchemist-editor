@@ -7,7 +7,8 @@ import StoreState from "../store/state";
 const style = {
     flex: 1,
     overflow: "scroll",
-    backgroundColor: "#586e75",
+    // backgroundColor: "#586e75",
+    backgroundColor: "black",
     color: "palegoldenrod",
     paddingLeft: "10px",
     paddingRight: "10px",

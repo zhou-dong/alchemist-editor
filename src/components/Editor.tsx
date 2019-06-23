@@ -1,4 +1,4 @@
-import AceEditor, { AceEditorProps, AceOptions, EditorProps } from "react-ace";
+import AceEditor from "react-ace";
 import "brace/mode/javascript";
 import "brace/mode/markdown";
 import "brace/mode/plain_text";
@@ -12,17 +12,17 @@ import Document from "../models/document";
 
 const defaultFontSize = 16;
 
-const defaultAceOptions: AceOptions = {
+const defaultAceOptions = {
     fontFamily: "'Courier New', Menlo, Monaco, monospace",
     dragEnabled: true,
     dragDelay: 100
 };
 
-const defaultEditorProps: EditorProps = {
+const defaultEditorProps = {
     $blockScrolling: false
 };
 
-const defaultAceEditorProps: AceEditorProps = {
+const defaultAceEditorProps = {
     width: "100%",
     height: "100%",
     fontSize: defaultFontSize,
