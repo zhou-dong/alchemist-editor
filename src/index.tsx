@@ -7,6 +7,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import reducer from "./store/reducer";
 
+// disable control+s
 document.addEventListener("keydown", function (e) {
     if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
         e.preventDefault();

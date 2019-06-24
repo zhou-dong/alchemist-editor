@@ -22,11 +22,11 @@ inorder.right.right.left = new TreeNode("H");
 
 const inorderTraversal = (root) => {
     if (root) {
-        inorderTraversal(root.left)
+        inorderTraversal(root.left);
         // do something;
         console.log(root.val);
-        inorderTraversal(root.right)
+        inorderTraversal(root.right);
     }
-}
+};
 
 inorderTraversal(inorder);
